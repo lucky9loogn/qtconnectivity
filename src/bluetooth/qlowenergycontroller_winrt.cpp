@@ -308,7 +308,7 @@ public slots:
                                                     exitCondition);
                         WARN_AND_CONTINUE_IF_FAILED(hr, "Could not await descriptor read result")
                         if (descData.uuid == QBluetoothUuid::DescriptorType::CharacteristicUserDescription)
-                            descData.value = byteArrayFromGattResult(readResult, true);
+                            descData.value = byteArrayFromGattResult(readResult, false);
                         else
                             descData.value = byteArrayFromGattResult(readResult);
                     }
@@ -1606,7 +1606,7 @@ void QLowEnergyControllerPrivateWinRT::readDescriptorHelper(
         QLowEnergyServicePrivate::DescData descData;
         descData.uuid = descUuid;
         if (descData.uuid == QBluetoothUuid::DescriptorType::CharacteristicUserDescription)
-            descData.value = byteArrayFromGattResult(descriptorValue, true);
+            descData.value = byteArrayFromGattResult(descriptorValue, false);
         else
             descData.value = byteArrayFromGattResult(descriptorValue);
         service->characteristicList[charHandle].descriptorList[descHandle] = descData;
